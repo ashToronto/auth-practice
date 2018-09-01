@@ -14,5 +14,4 @@ axios.get('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,JPY,E
     console.log(error);
   });
 
-
 app.listen(port, () => console.log(`Listening on port ${port}`));
