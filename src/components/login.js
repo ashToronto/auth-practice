@@ -11,10 +11,10 @@ class Login extends Component {
   }
 
   setUser = (e) => {
-    e.preventdefault();
-    const name = e.target.username.value
-    const email = e.target.email.value
-    const password = e.target.password.value
+    e.preventDefault();
+    const name = e.target.elements.username.value
+    const email = e.target.elements.email.value
+    const password = e.target.elements.password.value
     console.log(name, email, password)
   }
 
