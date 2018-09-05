@@ -14,7 +14,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <p>HELLO WORLD 222</p>
+        <h1>CRYPTON</h1>
         <Login />
       </div>
     );
