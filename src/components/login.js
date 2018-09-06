@@ -22,14 +22,10 @@ class Login extends Component {
       },
       credentials: 'include',
       body: JSON.stringify({username: e.target.username.value, email: e.target.email.value, password: e.target.password.value})
-    })
-
-    .then(response => response.json())
-    .then(data => {
+    }).then(response => response.json()).then(data => {
       this.setState({username: username, email: email, password: password})
       console.log(username, email, password)
-    })
-    .catch(err => console.log("$$MyError:", err))
+    }).catch(err => console.log("$$MyError:", err))
   };
 
   render() {
