@@ -8,9 +8,9 @@ import AlertTemplate from 'react-alert-template-basic';
 
 // optional cofiguration for notification alert
 const options = {
-  position: 'bottom center',
-  timeout: 5000,
-  offset: '30px',
+  position: 'top center',
+  timeout: 3000,
+  offset: '50px',
   transition: 'scale'
 }
 

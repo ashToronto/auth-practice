@@ -17,7 +17,7 @@ class Register extends Component {
     const email = e.target.elements.email.value
     const password = e.target.elements.password.value
 
-    if (email === ""){
+    if (email === "" || password === ""){
       return this.props.alert.show('Cannot leave text field blank')
     } else {
     fetch(`/register`, {
@@ -31,7 +31,8 @@ class Register extends Component {
       this.setState({username: username, email: email, password: password})
       console.log(username, email, password)
     }).catch(err => console.log("$$MyError:", err))
-  }};
+  }
+};
 
   render() {
     return (<div>
