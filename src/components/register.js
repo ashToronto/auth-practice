@@ -16,6 +16,10 @@ class Register extends Component {
     const username = e.target.elements.username.value
     const email = e.target.elements.email.value
     const password = e.target.elements.password.value
+
+    if (email === ""){
+      return this.props.alert.show('Cannot leave text field blank')
+    } else {
     fetch(`/register`, {
       method: 'POST',
       headers: {
@@ -27,23 +31,18 @@ class Register extends Component {
       this.setState({username: username, email: email, password: password})
       console.log(username, email, password)
     }).catch(err => console.log("$$MyError:", err))
-  };
+  }};
 
   render() {
     return (<div>
       <form onSubmit={this.setUser}>
-        <input type='text' name='username' placeholder='username'/>
+        <input type='text' name='username' placeholder='username' />
         <br></br>
-        <input type='text' name='email' placeholder='email'/>
+        <input type='text' name='email' placeholder='email' />
         <br></br>
-        <input type='password' name='password' placeholder='password'/>
+        <input type='text' name='password' placeholder='password' />
         <br></br>
-        <button onClick = {() => {
-            if(this.state.username === "" || this.state.email === "" || this.state.password === ""){
-              return this.props.alert.show('Cannot leave text field blank')
-          }}
-          }
-          >Register</button>
+        <button>Register</button>
       </form>
     </div>);
   }
