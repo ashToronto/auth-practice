@@ -1,5 +1,7 @@
-const express = require('express');
-const router = express.Router();
+const express     = require('express');
+const router      = express.Router();
+const bcrypt      = require('bcrypt');
+
 
 module.exports = (knex) => {
 
@@ -16,11 +18,11 @@ router.post('/register', (req, res) => {
       password
     )
       knex('users')
-      .returning('id')
+      // .returning('id')
       .insert([{
         username: req.body.username,
         email: req.body.email,
-        password: req.body.password
+        password: bcrypt.hashSync(req.body.password, 10)
       }]).then(()=>{})
     }
   })

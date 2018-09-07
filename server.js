@@ -3,6 +3,7 @@ const bodyParser    = require('body-parser');
 const axios         = require('axios');
 const cors          = require('cors');
 const env           = require('dotenv').config();
+const bcrypt        = require('bcrypt')
 
 const configuration = require('./knexfile.js')['development']
 const knex          = require('knex')(configuration);
