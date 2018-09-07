@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
+import { withAlert } from 'react-alert'
 
-class Login extends Component {
+class Register extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -15,7 +16,7 @@ class Login extends Component {
     const username = e.target.elements.username.value
     const email = e.target.elements.email.value
     const password = e.target.elements.password.value
-    fetch(`/login`, {
+    fetch(`/register`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'
@@ -37,10 +38,15 @@ class Login extends Component {
         <br></br>
         <input type='password' name='password' placeholder='password'/>
         <br></br>
-        <button>Sign-In</button>
+        <button onClick = {() => {
+            if(this.state.username === "" || this.state.email === "" || this.state.password === ""){
+              return this.props.alert.show('Cannot leave text field blank')
+          }}
+          }
+          >Register</button>
       </form>
     </div>);
   }
 }
 
-export default Login;
+export default withAlert(Register);
