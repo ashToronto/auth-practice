@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+module.exports = (knex) => {
+
 router.post('/register', (req, res) => {
   const username = req.body.username;
   const email = req.body.email;
@@ -13,15 +15,14 @@ router.post('/register', (req, res) => {
       email + '\n',
       password
     )
-  }
-});
-
-module.exports = router;
-
-//  else {
-//   knex('users').returning('id').insert([{
-//     name: req.body.username,
-//     email: req.body.email,
-//     password: req.body.password
-//   }])
-// }
+      knex('users')
+      .returning('id')
+      .insert([{
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password
+      }]).then(()=>{})
+    }
+  })
+  return router;
+};

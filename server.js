@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 const usersRouter     = require("./routes/users");
 
 // USE ROUTES
-app.use('/', usersRouter);
+app.use('/', usersRouter(knex));
 
 // Request CryptoCurrency data from API
 axios.get('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,JPY,EUR')
