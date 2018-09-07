@@ -9,9 +9,6 @@ router.post('/register', (req, res) => {
   const username = req.body.username;
   const email = req.body.email;
   const password = req.body.password;
-   if (req.body.email === "" || req.body.password === "" || req.body.username === ""){
-    return res.status(400).send("Error: Username, Email or Password Field cannot be empty")
-  } else {
     console.log(
       username + '\n',
       email + '\n',
@@ -24,7 +21,7 @@ router.post('/register', (req, res) => {
         email: req.body.email,
         password: bcrypt.hashSync(req.body.password, 10)
       }]).then(()=>{})
-    }
+
   })
   return router;
 };

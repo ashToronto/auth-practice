@@ -7,7 +7,8 @@ class Register extends Component {
     this.state = {
       username: '',
       email: '',
-      password: ''
+      password: '',
+      confirm_password: ''
     }
   }
 
@@ -16,9 +17,11 @@ class Register extends Component {
     const username = e.target.elements.username.value
     const email = e.target.elements.email.value
     const password = e.target.elements.password.value
-
+    const confirm_password = e.target.elements.confirm_password.value
     if (email === "" || password === ""){
       return this.props.alert.show('Cannot leave text field blank')
+    } else if (password !== confirm_password){
+      return this.props.alert.show('Invalid password confirmation')
     } else {
     fetch(`/register`, {
       method: 'POST',
@@ -42,6 +45,8 @@ class Register extends Component {
         <input type='text' name='email' placeholder='email' />
         <br></br>
         <input type='text' name='password' placeholder='password' />
+        <br></br>
+        <input type='text' name='confirm_password' placeholder='confirm password' />
         <br></br>
         <button>Register</button>
       </form>
