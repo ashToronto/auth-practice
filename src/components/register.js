@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {withAlert} from 'react-alert'
+import {withAlert} from 'react-alert';
 
 class Register extends Component {
   constructor(props) {
@@ -8,7 +8,7 @@ class Register extends Component {
       username: '',
       email: '',
       password: '',
-      confirm_password: ''
+      confirm_password: '',
     }
   }
 
@@ -53,6 +53,5 @@ class Register extends Component {
       </div>);
     }
   }
-
 
   export default withAlert(Register);

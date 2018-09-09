@@ -14,20 +14,33 @@ module.exports = (knex) => {
       email + '\n',
       password
     )
-    knex('users')
+    const insertUser = knex('users')
       .returning('id')
       .insert([{
         username: req.body.username,
         email: req.body.email,
         password: bcrypt.hashSync(req.body.password, 10)
-      }]).then(() => {})
+      }]).then(userNameValid => {console.log(userNameValid)})
 
-    knex.select("*")
-      .from("users")
-      .then(userNametList => {
-        console.log(userNametList)
-      })
+      const userNameCheck = knex.select("username")
+       .from("users")
+       .where("username", username)
+       .then(userNametList => {
+       console.log(userNametList)
+     })
+
+     if (!userNameCheck){
+       return insertUser;
+     } else {
+       console.log('Username is already taken')
+     }
 
   })
   return router;
 };
+
+// knex.select("*")
+//   .from("users")
+//   .then(userNametList => {
+//     console.log(userNametList)
+//   })
