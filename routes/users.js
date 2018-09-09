@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 
-
+// Registration
+// includes username validation
 module.exports = (knex) => {
 
   router.post('/register', (req, res) => {
@@ -29,18 +30,19 @@ module.exports = (knex) => {
        console.log(userNametList)
      })
 
-     if (!userNameCheck){
+     const emailCheck = knex.select("email")
+      .from("users")
+      .where("email", email)
+      .then(emailList => {
+      console.log(emailList)
+    })
+
+     if (!userNameCheck && !emailCheck){
        return insertUser;
      } else {
-       console.log('Username is already taken')
+       console.log('Username or email is already in use')
      }
 
   })
   return router;
 };
-
-// knex.select("*")
-//   .from("users")
-//   .then(userNametList => {
-//     console.log(userNametList)
-//   })
