@@ -15,34 +15,24 @@ module.exports = (knex) => {
       email + '\n',
       password
     )
-    const insertUser = knex('users')
-      .returning('id')
-      .insert([{
-        username: req.body.username,
-        email: req.body.email,
-        password: bcrypt.hashSync(req.body.password, 10)
-      }]).then(userNameValid => {console.log(userNameValid)})
-
-      const userNameCheck = knex.select("username")
+      knex.select("username")
        .from("users")
        .where("username", username)
+       .andWhere("email", email)
        .then(userNametList => {
        console.log(userNametList)
+       if (userNametList.length === 0){
+         return knex('users')
+           .returning('id')
+           .insert([{
+             username: req.body.username,
+             email: req.body.email,
+             password: bcrypt.hashSync(req.body.password, 10)
+           }]).then((newUserId) => {console.log('inserted user', newUserId)});
+       }
+        console.log("not inserted");
+        return;
      })
-
-     const emailCheck = knex.select("email")
-      .from("users")
-      .where("email", email)
-      .then(emailList => {
-      console.log(emailList)
-    })
-
-     if (!userNameCheck && !emailCheck){
-       return insertUser;
-     } else {
-       console.log('Username or email is already in use')
-     }
-
   })
   return router;
 };
