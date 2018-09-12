@@ -31,7 +31,7 @@ module.exports = (knex) => {
            }]).then((newUserId) => {console.log('inserted user', newUserId)});
        }
         console.log("not inserted");
-        return;
+        return res.status(400).send("Error: Username already exists")
      })
   })
   return router;

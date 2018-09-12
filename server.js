@@ -25,12 +25,12 @@ const usersRouter     = require("./routes/users");
 app.use('/', usersRouter(knex));
 
 // Request CryptoCurrency data from API
-axios.get('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,JPY,EUR')
-  .then(function(res) {
-    console.log(res.data);
-  })
-  .catch(function(error) {
-    console.log(error);
-  });
+// axios.get('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,JPY,EUR')
+//   .then(function(res) {
+//     console.log(res.data);
+//   })
+//   .catch(function(error) {
+//     console.log(error);
+//   });
 
 app.listen(port, () => console.log(`CRYPTON on port ${port}`));
