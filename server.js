@@ -5,6 +5,7 @@ const cors          = require('cors');
 const env           = require('dotenv').config();
 const bcrypt        = require('bcrypt')
 
+
 const configuration = require('./knexfile.js')['development']
 const knex          = require('knex')(configuration);
 

@@ -44,7 +44,7 @@ class Register extends Component {
           <br></br>
           <input type='text' name='email' placeholder='email'/>
           <br></br>
-          <input type='text' name='password' placeholder='password'/>
+          <input type='password' name='password' placeholder='password'/>
           <br></br>
           <input type='text' name='confirm_password' placeholder='confirm password'/>
           <br></br>

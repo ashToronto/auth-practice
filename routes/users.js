@@ -1,6 +1,7 @@
-const express = require('express');
-const router = express.Router();
-const bcrypt = require('bcrypt');
+const express   = require('express');
+const router    = express.Router();
+const bcrypt    = require('bcrypt');
+
 
 // Registration
 // includes username validation
@@ -31,7 +32,8 @@ module.exports = (knex) => {
            }]).then((newUserId) => {console.log('inserted user', newUserId)});
        }
         console.log("not inserted");
-        return res.status(400).send("Error: Username already exists")
+        alert("Error: Username already exists");
+        return;
      })
   })
   return router;
