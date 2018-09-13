@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Register             from './components/register.js';
 import Home                 from './components/home.js';
+import Navbar                 from './components/navbar.js';
+
 import './App.css';
-import { Router }           from "@reach/router";
+import { Router, Link }           from "@reach/router";
 import { Provider }         from 'react-alert';
 import AlertTemplate        from 'react-alert-template-basic';
 import Particles            from 'react-particles-js';
@@ -32,16 +34,15 @@ class App extends Component {
   render() {
     return (
       <Provider template={AlertTemplate} {...options}>
-        <router>
       <div>
           <h1>CRYPTON</h1>
+            <Navbar />
           <Router>
-          <Home path="home" />
+          <Home path="/home" />
           <Register path="register" />
           </Router>
           <Particles params={particleOpt} />
       </div>
-      </router>
     </Provider>
     );
   }

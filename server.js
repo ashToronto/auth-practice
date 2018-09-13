@@ -19,15 +19,17 @@ app.use(cors());
 // CONFIG: parse application/x-www-form-urlencoded
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
-// app.use(
-//   cookieSession({
-//     name: "User session",
-//     keys: ["ash"]
-//   })
-// );
+
+app.use(
+  cookieSession({
+    name: "User session",
+    keys: ["ash"]
+  })
+);
 
 // ROUTEING
 const usersRouter     = require("./routes/users");
+
 
 // USE ROUTES
 app.use('/', usersRouter(knex));

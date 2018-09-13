@@ -4,3 +4,34 @@
   font-family: sans-serif;
   background: linear-gradient(to right, rgb(203, 52, 181), rgb(68, 166, 187))
 }
+
+.modal {
+  top:400px;
+  margin-left: 50%;
+ }
+
+ .insideModal {
+  height: 50%;
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 35px;
+  text-align: center;
+  border-radius: 15px;
+ }
+
+ .insideModal p {
+  text-decoration: underline;
+ }
+
+ .insideModal input {
+  border: none;
+  border-bottom: 2px solid #67b4ba;
+  outline-width: 0;
+  width: 60%;
+  height: 50px;
+  font-size: 25px;
+  margin-bottom: 10px;
+  background-color : white;
+  outline: none;
+ }

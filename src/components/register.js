@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {withAlert} from 'react-alert';
+import Modal from './modal'
 
 class Register extends Component {
   constructor(props) {
@@ -9,6 +10,8 @@ class Register extends Component {
       email: '',
       password: '',
       confirm_password: '',
+      currentUser: null,
+      isRegistrationModalOpen: true,
     }
   }
 
@@ -29,17 +32,29 @@ class Register extends Component {
           'Content-type': 'application/json'
         },
         credentials: 'include',
-        body: JSON.stringify({username: e.target.username.value, email: e.target.email.value, password: e.target.password.value})
+        body: JSON.stringify({
+          username: e.target.username.value,
+          email: e.target.email.value,
+          password: e.target.password.value})
       })
-      .then(response => response.json()).then(data => {
-        this.setState({username: username, email: email, password: password})
-        console.log(username, email, password)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          currentUser: data,
+        })
+        if (this.state.currentUser !== null){
+          this.setState({
+            isRegistrationModalOpen: false
+          })
+        }
+        console.log(data)
       }).catch(err => console.log("$$MyError:", err))
     };
   }
 
     render() {
       return (<div>
+        <Modal isOpen={this.state.isRegistrationModalOpen}>
         <form onSubmit={this.setUser}>
           <input type='text' name='username' placeholder='username'/>
           <br></br>
@@ -51,6 +66,7 @@ class Register extends Component {
           <br></br>
           <button>Register</button>
         </form>
+        </Modal>
       </div>);
     }
   }
