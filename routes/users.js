@@ -34,7 +34,7 @@ module.exports = (knex) => {
               };
               res.status(200).send(JSON.stringify(currentUser));
             });
-        }
+        } 
         console.log("not inserted");
       }).catch(function(error) {
         console.error('There was an error:', error)

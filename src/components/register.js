@@ -12,6 +12,7 @@ class Register extends Component {
       confirm_password: '',
       currentUser: null,
       isRegistrationModalOpen: true,
+      errorMessage: null
     }
   }
 
@@ -49,6 +50,7 @@ class Register extends Component {
         }
         console.log(data)
       }).catch(err => console.log("$$MyError:", err))
+      return this.props.alert.show('User already exists, please login')
     };
   }
 
