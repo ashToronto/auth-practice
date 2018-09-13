@@ -1,5 +1,6 @@
 const express       = require('express');
 const bodyParser    = require('body-parser');
+const cookieSession = require('cookie-session')
 const axios         = require('axios');
 const cors          = require('cors');
 const env           = require('dotenv').config();
@@ -18,6 +19,12 @@ app.use(cors());
 // CONFIG: parse application/x-www-form-urlencoded
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
+// app.use(
+//   cookieSession({
+//     name: "User session",
+//     keys: ["ash"]
+//   })
+// );
 
 // ROUTEING
 const usersRouter     = require("./routes/users");

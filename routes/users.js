@@ -21,7 +21,6 @@ module.exports = (knex) => {
        .where("username", username)
        .andWhere("email", email)
        .then(userNametList => {
-       console.log(userNametList)
        if (userNametList.length === 0){
          return knex('users')
            .returning('id')
@@ -29,12 +28,17 @@ module.exports = (knex) => {
              username: req.body.username,
              email: req.body.email,
              password: bcrypt.hashSync(req.body.password, 10)
-           }]).then((newUserId) => {console.log('inserted user', newUserId)});
+           }])
+           .then(function(userData){
+             // req.session.user_id = userData[0];
+             console.log("the id is " + " " + userData)
+           });
        }
         console.log("not inserted");
-        alert("Error: Username already exists");
-        return;
+     }).catch(function(error){
+       console.error('There was an error:', error)
      })
   })
+
   return router;
 };

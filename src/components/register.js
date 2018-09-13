@@ -30,7 +30,8 @@ class Register extends Component {
         },
         credentials: 'include',
         body: JSON.stringify({username: e.target.username.value, email: e.target.email.value, password: e.target.password.value})
-      }).then(response => response.json()).then(data => {
+      })
+      .then(response => response.json()).then(data => {
         this.setState({username: username, email: email, password: password})
         console.log(username, email, password)
       }).catch(err => console.log("$$MyError:", err))
@@ -46,7 +47,7 @@ class Register extends Component {
           <br></br>
           <input type='password' name='password' placeholder='password'/>
           <br></br>
-          <input type='text' name='confirm_password' placeholder='confirm password'/>
+          <input type='password' name='confirm_password' placeholder='confirm password'/>
           <br></br>
           <button>Register</button>
         </form>
