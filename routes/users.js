@@ -7,6 +7,10 @@ const bcrypt = require('bcrypt');
 // includes username validation
 module.exports = (knex) => {
 
+  router.get('/', (req, res) => {
+    
+  })
+
   router.post('/register', (req, res) => {
     const username = req.body.username;
     const email = req.body.email;
@@ -34,7 +38,7 @@ module.exports = (knex) => {
               };
               res.status(200).send(JSON.stringify(currentUser));
             });
-        } 
+        }
         console.log("not inserted");
       }).catch(function(error) {
         console.error('There was an error:', error)

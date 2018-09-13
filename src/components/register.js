@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {withAlert} from 'react-alert';
 import Modal from './modal'
+import RegistrationForm from "./registrationForm"
+import LoginForm from "./loginForm"
 
 class Register extends Component {
   constructor(props) {
@@ -12,7 +14,7 @@ class Register extends Component {
       confirm_password: '',
       currentUser: null,
       isRegistrationModalOpen: true,
-      errorMessage: null
+      isLoginModalOpen: false,
     }
   }
 
@@ -54,23 +56,44 @@ class Register extends Component {
     };
   }
 
+openRegistrationModal = (e) => {
+  e.preventDefault();
+  this.setState({
+    isLoginModalOpen: false,
+    isRegistrationModalOpen: true
+  })
+}
+
+  openLoginModal = (e) => {
+    e.preventDefault();
+    this.setState({
+      isLoginModalOpen: true,
+      isRegistrationModalOpen: false
+    })
+  }
+
     render() {
       return (<div>
-        <Modal isOpen={this.state.isRegistrationModalOpen}>
-        <form onSubmit={this.setUser}>
-          <input type='text' name='username' placeholder='username'/>
-          <br></br>
-          <input type='text' name='email' placeholder='email'/>
-          <br></br>
-          <input type='password' name='password' placeholder='password'/>
-          <br></br>
-          <input type='password' name='confirm_password' placeholder='confirm password'/>
-          <br></br>
-          <button>Register</button>
-        </form>
-        </Modal>
-      </div>);
-    }
+        <div>
+          <Modal isOpen={this.state.isRegistrationModalOpen}>
+          <form onSubmit={this.setUser}>
+          <RegistrationForm />
+          </form>
+          <button onClick={this.openLoginModal}>Lgogin</button>
+          </Modal>
+          </div>
+
+          <div>
+          <Modal isOpen={this.state.isLoginModalOpen}>
+          <form>
+          <LoginForm />
+          </form>
+          <button onClick={this.openRegistrationModal}>Sign-Up</button>
+          </Modal>
+          </div>
+
+        </div>);
+    };
   }
 
   export default withAlert(Register);

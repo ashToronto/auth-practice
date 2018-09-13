@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 app.use(
   cookieSession({
-    name: "User session",
+    name: "session",
     keys: ["ash"]
   })
 );
