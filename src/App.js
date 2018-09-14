@@ -14,7 +14,8 @@ const options = {
   position: 'top center',
   timeout: 3000,
   offset: '50px',
-  transition: 'scale'
+  transition: 'scale',
+  zIndex: 99999
 }
 
 // Set particle effects on main page

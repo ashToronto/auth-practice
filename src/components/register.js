@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {withAlert} from 'react-alert';
 import Modal from './modal'
 import RegistrationForm from "./registrationForm"
-import LoginForm from "./loginForm"
+import Login from "./login"
 
 class Register extends Component {
   constructor(props) {
@@ -76,23 +76,24 @@ openRegistrationModal = (e) => {
       return (<div>
         <div>
           <Modal isOpen={this.state.isRegistrationModalOpen}>
+            <button onClick={this.openRegistrationModal}>Sign-Up</button>
+            <button onClick={this.openLoginModal}>Login</button>
           <form onSubmit={this.setUser}>
+          <p> <strong>SignUp</strong></p>
           <RegistrationForm />
           </form>
-          <button onClick={this.openLoginModal}>Lgogin</button>
           </Modal>
           </div>
 
           <div>
-          <Modal isOpen={this.state.isLoginModalOpen}>
-          <form>
-          <LoginForm />
-          </form>
-          <button onClick={this.openRegistrationModal}>Sign-Up</button>
-          </Modal>
+            <Modal isOpen={this.state.isLoginModalOpen}>
+              <button onClick={this.openRegistrationModal}>Sign-Up</button>
+              <button onClick={this.openLoginModal}>Login</button>
+                <Login/>
+            </Modal>
           </div>
-
         </div>);
+
     };
   }
 

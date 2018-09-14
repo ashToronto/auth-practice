@@ -7,10 +7,6 @@ const bcrypt = require('bcrypt');
 // includes username validation
 module.exports = (knex) => {
 
-  router.get('/', (req, res) => {
-    
-  })
-
   router.post('/register', (req, res) => {
     const username = req.body.username;
     const email = req.body.email;
@@ -44,6 +40,26 @@ module.exports = (knex) => {
         console.error('There was an error:', error)
       })
   })
+
+  router.post('/login', (req, res) => {
+  knex.select('*')
+  .from('users')
+  .where('username', '=', req.body.username)
+  .then(function (data) {
+    if (bcrypt.compareSync(req.body.password, data[0].password)) {
+      console.log('results is', data);
+      req.session.user_id = data[0].id;
+      const currentUser = {
+        id: data[0],
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password
+      };
+      res.status(200).send(JSON.stringify(currentUser));
+    }
+  })
+  console.log('Password is incorrect')
+});
 
   return router;
 };
