@@ -2,10 +2,37 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 
-
 // Registration
 // includes username validation
 module.exports = (knex) => {
+
+  router.get("/home", (req, res) => {
+    if (!req.session.user_id) {
+      res.json({
+        Redirect: true,
+        url: '/register',
+      })
+    } else {
+      res.json({
+        Redirect: true,
+        url: '/home',
+      })
+    }
+  });
+
+  router.get("/register", (req, res) => {
+    if (!req.session.user_id) {
+      res.json({
+        Redirect: true,
+        url: '/register'
+      })
+    } else {
+      res.json({
+        Redirect: true,
+        url: '/home'
+      })
+    }
+  });
 
   router.post('/register', (req, res) => {
     const username = req.body.username;
@@ -26,19 +53,17 @@ module.exports = (knex) => {
             }])
             .then(function(id) {
               req.session.user_id = id[0];
-              const currentUser = {
-                id: id[0],
-                username: username,
-                email: email,
-                password: password
-              };
-              res.status(200).send(JSON.stringify(currentUser));
+              res.json({
+                Redirect: true,
+                url: '/home',
+              })
+            }).catch(function (error) {
+              console.error('Error: Inserting the user', error)
             });
         }
-        console.log("not inserted");
-      }).catch(function(error) {
-        console.error('There was an error:', error)
-      })
+      }).catch(function (error) {
+        console.error('Error: The user already Exists', error)
+      });
   })
 
   router.post('/login', (req, res) => {
@@ -49,17 +74,24 @@ module.exports = (knex) => {
     if (bcrypt.compareSync(req.body.password, data[0].password)) {
       console.log('results is', data);
       req.session.user_id = data[0].id;
-      const currentUser = {
-        id: data[0],
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password
-      };
-      res.status(200).send(JSON.stringify(currentUser));
+      res.json({
+            Redirect: true,
+            url: '/home',
+          })
+        } else {
+          res.json({
+            Redirect: false,
+            url: '/register'
+          })
     }
-  })
-  console.log('Password is incorrect')
+  }).catch(function (error) {
+        console.error("Password is incorrect : " + error)
+        res.json({
+          Redirect: false,
+          url: '/register'
+        })
 });
+})
 
   return router;
 };

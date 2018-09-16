@@ -1,10 +1,33 @@
 import React, {Component} from 'react';
-import Register from './register.js';
+import Authenticate from './authenticate.js';
+import { Redirect } from "@reach/router";
+
 
 class Home extends Component {
+
+getHomePage = () => {
+  fetch('api/users/home', {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json'
+    },
+    credentials: 'include',
+  }).then(res => res.json())
+      .then(res => {
+        if (res.Redirect === true) {
+          window.location.replace(res.url);
+        } else {
+          console.log("FETCH WORKED")
+        }
+  });
+}
+
+componentDidMount(){
+  this.getHomePage();
+}
   render() {
     return (<div>
-      (this.props.currentUser ? <h1>CRYPTON HOME SCREEN</h1> : <Register/>)
+         <h1>CRYPTON HOME SCREEN</h1>
     </div>);
   }
 }

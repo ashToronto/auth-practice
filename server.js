@@ -18,8 +18,6 @@ const client        = process.env.API_KEY;
 app.use(cors());
 // CONFIG: parse application/x-www-form-urlencoded
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: false}))
-
 app.use(
   cookieSession({
     name: "session",
@@ -32,8 +30,11 @@ const usersRouter     = require("./routes/users");
 
 
 // USE ROUTES
-app.use('/', usersRouter(knex));
+app.use('/api/users', usersRouter(knex));
 
+// app.get('*', function(request, response) {
+//   response.sendFile(path.resolve(__dirname, './react-ui/build', 'index.html'));
+// });
 // Request CryptoCurrency data from API
 // axios.get('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,JPY,EUR')
 //   .then(function(res) {
