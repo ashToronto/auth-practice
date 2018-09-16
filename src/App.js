@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Authenticate         from './components/authenticate.js';
 import Home                 from './components/home.js';
-// import Navbar               from './components/navbar.js';
 
 import './App.css';
 import { Router }           from "@reach/router";

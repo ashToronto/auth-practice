@@ -63,7 +63,6 @@ class Register extends Component {
       }
       console.log('LOGIN WORKED')
     })
-
   };
 
   openRegistrationModal = (e) => {
@@ -78,7 +77,6 @@ class Register extends Component {
 
   render() {
     return (<div>
-
       <div>
         <Modal isOpen={this.state.isRegistrationModalOpen}>
           <button onClick={this.openRegistrationModal}>Sign-Up</button>

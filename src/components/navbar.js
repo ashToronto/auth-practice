@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Logout   from "./logout";
 import { Link }   from "@reach/router";
 
 class Navbar extends Component {
@@ -7,6 +8,7 @@ class Navbar extends Component {
       <nav>
         <Link to="/">Home</Link>
         <Link to="register">Register</Link>
+        <div><Logout /></div>
       </nav>
     </div>);
   }

@@ -97,5 +97,13 @@ module.exports = (knex) => {
 });
 })
 
+router.post('/logout', (req, res) => {
+  req.session = null;
+  res.json({
+    redirect: true,
+    url: "/register"
+  })
+})
+
   return router;
 };

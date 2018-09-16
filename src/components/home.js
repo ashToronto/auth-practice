@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Authenticate from './authenticate.js';
 import { Redirect } from "@reach/router";
+import Navbar from './navbar.js';
 
 
 class Home extends Component {
@@ -29,7 +30,7 @@ getHomePage = () => {
             username: session.username,
             email: session.email
           })
-          console.log(this.state.data)
+          console.log(session + " " + data)
         }
   });
 }
@@ -40,6 +41,7 @@ componentDidMount(){
   render() {
     return (<div>
          <h1>CRYPTON HOME SCREEN</h1>
+         <Navbar />
     </div>);
   }
 }
