@@ -4,6 +4,13 @@ import { Redirect } from "@reach/router";
 
 
 class Home extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      username: '',
+      email: ''
+    }
+  }
 
 getHomePage = () => {
   fetch('api/users/home', {
@@ -13,11 +20,16 @@ getHomePage = () => {
     },
     credentials: 'include',
   }).then(res => res.json())
-      .then(res => {
-        if (res.Redirect === true) {
-          window.location.replace(res.url);
+      .then(data => {
+        if (data.Redirect === true) {
+          window.location.replace(data.url);
         } else {
-          console.log("FETCH WORKED")
+          let session = data.message[0];
+          this.setState({
+            username: session.username,
+            email: session.email
+          })
+          console.log(this.state.data)
         }
   });
 }

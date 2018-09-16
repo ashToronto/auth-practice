@@ -13,10 +13,14 @@ module.exports = (knex) => {
         url: '/register',
       })
     } else {
-      res.json({
-        Redirect: true,
-        url: '/home',
-      })
+      knex.select('*')
+      .from('users')
+      .where('id', '=', req.session.user_id)
+      .then(function (data) {
+          res.json({ message: data })
+        }).catch(function (error) {
+          console.error(error)
+        });
     }
   });
 
