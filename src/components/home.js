@@ -41,7 +41,10 @@ componentDidMount(){
   render() {
     return (<div>
          <h1>CRYPTON HOME SCREEN</h1>
+         <div>
          <Navbar />
+         Logged in as: {this.state.username}
+       </div>
     </div>);
   }
 }

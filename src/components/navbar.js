@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Logout   from "./logout";
+import Home   from "./home";
 import { Link }   from "@reach/router";
 
 class Navbar extends Component {
