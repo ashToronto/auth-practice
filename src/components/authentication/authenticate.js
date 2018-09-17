@@ -41,13 +41,12 @@ class Register extends Component {
           window.location.replace(data.url);
         }
       }).catch(err => console.log("$$MyError:", err))
-      return this.props.alert.show('User already exists, please login')
+      return this.props.alert.show('This username or email already exists')
     }
   }
 
   getLogin = (e) => {
     e.preventDefault();
-    console.log('logging in')
     fetch(`api/users/login`, {
       method: "POST",
       headers: {
@@ -56,12 +55,12 @@ class Register extends Component {
       credentials: 'include',
       body: JSON.stringify({username: e.target.username.value, password: e.target.password.value})
     }).then(response => response.json()).then(data => {
-      console.log(data)
       if (data.Redirect) {
         document.cookie=""
         window.location.replace(data.url);
+      } else {
+        return this.props.alert.show('Invalid username or password')
       }
-      console.log('LOGIN WORKED')
     })
   };
 

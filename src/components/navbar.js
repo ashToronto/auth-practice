@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Logout   from "./logout";
+import Logout   from "./authentication/logout";
 import Home   from "./home";
 import { Link }   from "@reach/router";
 

@@ -45,7 +45,7 @@ module.exports = (knex) => {
     knex.select("username")
       .from("users")
       .where("username", username)
-      .andWhere("email", email)
+      .where("email", email)
       .then(userNametList => {
         if (userNametList.length === 0) {
           return knex('users')

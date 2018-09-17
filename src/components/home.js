@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Authenticate from './authenticate.js';
+import Authenticate from './authentication/authenticate.js';
 import { Redirect } from "@reach/router";
 import Navbar from './navbar.js';
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Authenticate         from './components/authenticate.js';
+import Authenticate         from './components/authentication/authenticate.js';
 import Home                 from './components/home.js';
 
 import './App.css';
